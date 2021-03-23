@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add To Cart System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    
+    <style>
+        .scroll-spy-ex {
+            position: relative;
+            height: 200px;
+            margin-top: .5rem;
+            overflow: auto;
+        }
+        strong:hover {
+  background-color: red;
+}
+    </style>
+    <script>
+    function CheckBrowser() {
+    if ('localStorage' in window && window['localStorage'] !== null) {
+        // We can use localStorage object to store data.
+        return true;
+    } else {
+            return false;
+    }
+}
+function doShowAll() {
+    if (CheckBrowser()) {
+        var key = "";
+        var list = "<tr><th>Item</th><th>Value</th></tr>\n";
+        var i = 0;
+        //For a more advanced feature, you can set a cap on max items in the cart.
+        for (i = 0; i <= localStorage.length-1; i++) {
+            key = localStorage.key(i);
+            list += "<tr><td>" + key + "</td>\n<td>"
+                    + localStorage.getItem(key) + "</td></tr>\n";
+        }
+        //If no item exists in the cart.
+        if (list == "<tr><th>Item</th><th>Value</th></tr>\n") {
+            list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+        }
+        //Bind the data to HTML table.
+        //You can use jQuery, too.
+        document.getElementById('list').innerHTML = list;
+    } else {
+        alert('Cannot save shopping list as your browser does not support HTML 5');
+    }
+}
+</script>
+</head>
+
+<body onload="doShowAll()">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+            <img src="image1.jpg" alt="Home" width="70px" height="60px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Restaurant.html" target="self"><Strong >Home</Strong></a>
+          </li>
+          &nbsp;&nbsp;&nbsp;
+          <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Restaurant.html"><Strong >BestSeller</Strong></a>
+          </li>
+          &nbsp;&nbsp;&nbsp;
+          <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Contactus.html"><Strong >Contact</Strong></a>
+              </li>
+          &nbsp;&nbsp;&nbsp;
+          <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Smile.html"><Strong >Smiles</Strong></a>
+          </li>
+          
+        </ul>
+        &nbsp;&nbsp;&nbsp;
+        <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Delivary/Takeaway
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                  
+              <li  class="nav-item">
+                <a class="nav-link" href="./cart.html">Checkout<i class="fas fa-cart-plus"></i></a>
+              </li>
+            </ul>
+          </form>
+        </div>
+    </div>
+  </nav>
+  <div class="card" style="width: 26rem; padding:15px; float: left;">
+        <img src="image2.jpg" class="card-img-top" alt="..." width="500px" height="213px">
+        <div class="card-body">
+                <h5 class="card-title" style="color:violet;">Prawn Pulao</h5>
+                <p class="card-text" style="color:royalblue;">This gentle prawn curry with soothing flavours of coconut milk, cinnamon, fresh ginger senses.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="color:red;"><strong>Cost: 330/-</strong></li>
+              </ul>
+              <a  class="btn btn-outline-success" onclick="setCookie('rem-1','add-1','Head Phone+3200')" id="add-1">Add To Cart</a>
+              <a class="btn btn-outline-success" onclick="remCookie('rem-1','add-1','Head Phone+3200')" style="visibility: hidden;" id="rem-1">Remove From Cart</a>
+        </div>
+      <div class="card" style="width: 26rem; padding:15px; float: left;">
+            <img src="image3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                    <h5 class="card-title" style="color:violet;">Kadai Panner</h5>
+                    <p class="card-text" style="color:royalblue;">Kadai Paneer is a vibrant, tangy, spiced paneer dish that can brighten up your day any time.</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="color:red;"><strong>Cost: 290/-</strong></li>
+                  </ul>
+                  <a  class="btn btn-outline-success" onclick="setCookie('rem-2','add-2','HP Keyboard+1600')" id="add-2">Add To Cart</a>
+          <a class="btn btn-outline-success" onclick="remCookie('rem-2','add-2','HP Keyboard+1600')" style="visibility: hidden;" id="rem-2">Remove From Cart</a>
+        
+                </div>
+          <div class="card" style="width: 26rem; padding:15px; " >
+                <img src="image4.jpg" class="card-img-top" alt="..." height="213px">
+                <div class="card-body">
+                  <h5 class="card-title" style="color:violet;">Garlic Parmesan</h5>
+                  <p class="card-text" style="color:royalblue;">A hard, sharp, dry Italian cheese made from skim milk and usually served grated as a garnish.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" style="color:red;"><strong>Cost: 350/-</strong></li>
+                </ul>
+                <a  class="btn btn-outline-success" onclick="setCookie('rem-3','add-3','Laptop Sticker+3200')" id="add-3">Add To Cart</a>
+        <a class="btn btn-outline-success" onclick="remCookie('rem-3','add-3','Laptop Sticker+3200')" style="visibility: hidden;" id="rem-3">Remove From Cart</a>
+      
+              </div>
+              <div>
+                    <div class="card-header">
+                    <strong>References</strong>
+                    </div>
+                    <div class="card-body" style="background-color:black;">
+                      <h5 class="card-title" style="color:white;">Location:</h5>
+                      <p class="card-text" style="color:white;">4th floor, No. 8/14, STV Nagar, AIR Bypass Rd, Urban Mandal, Tirupati, Andhra Pradesh 517501.</p>
+                      <a href="#" class="btn btn-primary" style="color:white;">Show In Maps</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                      2 days ago
+                    </div>
+                    </div>
+  
+  
+</body>
+
+</html>
